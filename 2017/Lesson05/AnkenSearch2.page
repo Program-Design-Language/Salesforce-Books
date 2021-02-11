@@ -1,0 +1,162 @@
+<apex:page controller="AnkenSearchController" sidebar="false" action="{!init}" title="案件情報一覧画面" id="pageId">
+    <meta content="charset=utf-8" />
+    <style>
+        .headerRow .buttonTableTitle {
+            border-left: thin solid black !important;
+            border-right: thin solid black !important;
+            border-bottom: thin solid black !important;
+            background-color: #fde9d9 !important;
+            text-align: center;
+        }
+        .headerRow .TableTitle {
+            border-right: thin solid black !important;
+            border-bottom: thin solid black !important;
+            background-color: #fde9d9 !important;
+            text-align: center;
+        }
+        table.PageLink td{
+            font-size: 12px;
+        }
+        .headerRow .checkboxTableTitle {
+            border-left: thin solid black !important;
+            border-right: thin solid black !important;
+            border-bottom: thin solid black !important;
+            background-color: #fde9d9 !important;
+            text-align: center;
+        }
+    </style>
+    <apex:form id="formId">
+        <!-- メッセージ -->
+        <apex:pageMessages id="pageMessages"/>
+        <apex:pageBlock title="案件情報一覧" id="blockId" mode="edit">
+            <apex:outputPanel id="tableId">   
+                <table  style="width:96%; margin: 0px 2%; ">
+                    <tr>
+                        <td style="text-align: right; width: 15%;">
+                            <apex:outputText value="氏名　" />
+                        </td>
+                        <td style="width: 35%;">
+                            <apex:outputField value="{!EmployeeList[0].FirstName__c}" /><apex:outputField value="{!EmployeeList[0].LastName__c}" />
+                        </td>
+                        <td style="text-align: right; width: 15%;">
+                            <apex:outputText value="性別　" />
+                        </td>
+                        <td style="width: 35%;">
+                            <apex:outputField value="{!EmployeeList[0].Sex__c}" />
+                        </td>
+                    </tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td style="text-align: right; width: 15%;">
+                            <apex:outputText value="年齢　" />
+                        </td>
+                        <td>
+                            <apex:outputField value="{!EmployeeList[0].Age__c}" />
+                        </td>
+                        <td style="text-align: right; width: 15%;">
+                            <apex:outputText value="社員区分　" />
+                        </td>
+                        <td>
+                            <apex:outputField value="{!EmployeeList[0].EmployeeDivision__c}" />
+                        </td>
+                    </tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td style="text-align: right;">
+                            <apex:outputText value="最小提案単価" />
+                        </td>
+                        <td>
+                            <apex:outputField value="{!EmployeeList[0].SmallMonthPrice__c}" />
+                        </td>
+                        <td style="text-align: right;">
+                            <apex:outputText value="最大提案単価　" />
+                        </td>
+                        <td>
+                            <apex:outputField value="{!EmployeeList[0].BigMonthPrice__c}" />
+                        </td>
+                    </tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td style="text-align: right;">
+                            <apex:outputText value="日本語　" />
+                        </td>
+                        <td>
+                            <apex:outputField value="{!EmployeeList[0].JapaneseLevel__c}" />
+                        </td>
+                        <td style="text-align: right;">
+                            <apex:outputText value="入場可能時間　" />
+                        </td>
+                        <td>
+                            <apex:outputField value="{!EmployeeList[0].StartJobDay__c}" />
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <br/>
+            </apex:outputPanel>
+
+
+
+            <!-- 明細エリア -->
+            <apex:outputPanel id="lockBlockTable" rendered="{!AND(NOT(isSystemErrorFlg), NOT(showDetail))}">
+                <!-- 明細一覧 -->
+                <apex:pageBlockTable value="{!AnkenResultList}" var="anken" id="meisaiTbl" style="width:96%; margin: 0px 2%; border-top: thin solid black;">
+                    <!-- 提案ボタン -->
+                    <apex:column style="width: 5em; text-align: center;border-left: thin solid black; border-right: thin solid black; border-bottom: thin solid black;" headerClass="buttonTableTitle">
+                        <apex:facet name="header"><apex:outputText value="" /></apex:facet>
+                        <apex:commandButton value="提案" id="NewProposeBtn" onclick="window.open('/apex/ProposeRegister?employeeSFIDid={!EmployeeList[0].Id}&ankenSFIDid={!anken.anken.Id}', '提案作成', 'width=750px,height=500')" />
+                    </apex:column>
+                    <!-- 案件名 -->
+                    <apex:column style="width:15em; text-align:left; border-right: thin solid black; border-bottom: thin solid black;" headerClass="TableTitle">
+                        <apex:facet name="header"><apex:outputText value="案件名" /></apex:facet>
+                        <apex:outputText value="{!anken.anken.Name}"  id="Name" />
+                    </apex:column>
+                    <!-- 顧客名 -->
+                    <apex:column style="width:13em; text-align:left; border-right: thin solid black;border-bottom: thin solid black;" headerClass="TableTitle">
+                        <apex:facet name="header"><apex:outputText value="顧客名" /></apex:facet>
+                        <apex:outputfield value="{!anken.anken.Account__r.Name}" id="accountName" />
+                    </apex:column>
+                    <!-- 緊急度 -->
+                    <apex:column style="width:4em; text-align:left; border-right: thin solid black;border-bottom: thin solid black;" headerClass="TableTitle">
+                        <apex:facet name="header"><apex:outputText value="緊急度" /></apex:facet>
+                        <apex:outputfield value="{!anken.anken.Level__c}" id="Level" />
+                    </apex:column>
+                    <!-- 確度 -->
+                    <apex:column style="width:4em; text-align:left; border-right: thin solid black;border-bottom: thin solid black;" headerClass="TableTitle">
+                        <apex:facet name="header"><apex:outputText value="確度" /></apex:facet>
+                        <apex:outputfield value="{!anken.anken.Confirm__c}" id="Confirm" />
+                    </apex:column>
+                    <!-- 案予定開始時間 -->
+                    <apex:column style="width:7em; text-align:left; border-right: thin solid black;border-bottom: thin solid black;" headerClass="TableTitle">
+                        <apex:facet name="header"><apex:outputText value="予定開始時間" /></apex:facet>
+                        <apex:outputfield value="{!anken.anken.AnkenPlanStartDay__c}" id="AnkenPlanStartDay" />
+                    </apex:column>
+                    <!-- 稼働時間（から） -->
+                    <apex:column style="width:7em; text-align:right; border-right: thin solid black;border-bottom: thin solid black;" headerClass="TableTitle">
+                        <apex:facet name="header"><apex:outputText value="稼働時間（から）" /></apex:facet>
+                        <apex:outputfield value="{!anken.anken.MonthTimeFrom__c}" id="MonthTimeFrom" />
+                    </apex:column>
+                    <!-- 稼働時間（まで） -->
+                    <apex:column style="width:7em; text-align:right; border-right: thin solid black;border-bottom: thin solid black;" headerClass="TableTitle">
+                        <apex:facet name="header"><apex:outputText value="稼働時間（まで）" /></apex:facet>
+                        <apex:outputfield value="{!anken.anken.MonthTimeTo__c}" id="MonthTimeTo" />
+                    </apex:column>
+                    <!-- 月単価（から） -->
+                    <apex:column style="width:6em; text-align:right; border-right: thin solid black;border-bottom: thin solid black;" headerClass="TableTitle">
+                        <apex:facet name="header"><apex:outputText value="月単価（から）" /></apex:facet>
+                        <apex:outputText value="{0, number, ###,###,###,###}" id="MonthPriceFrom">
+                            <apex:param value="{!anken.anken.MonthPriceFrom__c}" />
+                        </apex:outputText>
+                    </apex:column>
+                    <!-- 月単価（まで） -->
+                    <apex:column style="width:6em; text-align:right; border-right: thin solid black;border-bottom: thin solid black;" headerClass="TableTitle">
+                        <apex:facet name="header"><apex:outputText value="月単価（まで）" /></apex:facet>
+                        <apex:outputText value="{0, number, ###,###,###,###}" id="MonthPriceTo">
+                            <apex:param value="{!anken.anken.MonthPriceTo__c}" />
+                        </apex:outputText>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:outputPanel>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
