@@ -1,0 +1,19 @@
+<apex:page controller="mfCloudConnect" tabstyle="Account">
+    <apex:form id="theForm">
+        <apex:outputPanel id="msg">
+            <apex:pageMessages />
+        </apex:outputPanel>
+
+        <apex:outputPanel id="button">
+            <apex:commandButton value="取引リストを取得" action="{!indexTransaction}" style="font-size:12pt;width:200px;height:30px;" reRender="theForm"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <apex:commandButton value="取引を登録" action="{!createTransaction}" style="font-size:12pt;width:200px;height:30px;" reRender="theForm"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <apex:commandButton value="取引IDを指定して取得" action="{!showTransaction}" style="font-size:12pt;width:200px;height:30px;" reRender="theForm"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <apex:commandButton value="取引をキャンセル" action="{!cancelTransaction}" style="font-size:12pt;width:200px;height:30px;" reRender="theForm"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </apex:outputPanel>
+        <br/>
+        <br/>
+        <apex:outputPanel id="msgResponse">
+            <apex:outputText value="{!responseBody}" escape="false" />
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

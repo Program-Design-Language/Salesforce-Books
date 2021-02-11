@@ -1,0 +1,7 @@
+<apex:page controller="CheckController">
+<!-- <apex:page controller="CheckController" extensions="CheckControllerExt,CheckControllerExt2"> -->
+    <apex:form >
+        <apex:outputText value="{!Count}" />
+        <c:CheckComponent />
+    </apex:form>
+</apex:page>

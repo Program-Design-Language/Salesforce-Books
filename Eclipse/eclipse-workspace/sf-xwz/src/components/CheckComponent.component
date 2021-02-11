@@ -1,0 +1,4 @@
+<apex:component controller="CheckComponentController">
+    <apex:outputText value=" | " />
+    <apex:outputText value="{!ComponentCount}" />
+</apex:component>

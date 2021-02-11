@@ -1,0 +1,66 @@
+<apex:page controller="EmployeeListController" action="{!init}" showHeader="false" standardStylesheets="false" sidebar="true" applyHtmlTag="false" applyBodyTag="true" docType="html-5.0">
+<style type="text/css">
+    #conditionTable { width: 50%; border: 0; margin-left: 5%; }
+    #conditionTable .label { text-align: right; }
+    #conditionTable .dateFormat { display: none; }
+</style>
+<script type="text/javascript">
+    // ページを開いたときに初期フォーカスをしない
+    beenFocused = true;
+</script>
+
+<apex:slds />
+
+
+
+<apex:form id="form1">
+<div class="slds-scope">
+        <apex:pageMessages id="messagearea" showDetail="false"/>
+            <apex:commandButton value="検索" action="{!search}" style="font-size:12pt;width:100px;height:30px;" reRender="searchresult,messagearea"/>
+            <apex:commandButton value="クリア" action="{!clear}" style="font-size:12pt;width:100px;height:30px;" reRender="conditionSection,searchresult,messagearea"/>
+<apex:outputpanel id="searchresult">
+<div class="slds-scope">
+<div class="slds-p-vertical--medium">
+<table class="slds-table slds-table--bordered slds-text-heading_small">
+
+            <apex:repeat id="resultTable" value="{!results}" var="o">
+<tr>
+
+                <td style="width:80px">
+                    <apex:facet name="header">社員番号</apex:facet>
+                    <apex:outputlink value="/{!o.Id}"><apex:outputField style="width:80px" value="{!o.Name}"/></apex:outputlink>
+                </td >
+                <td  style="width:160px">
+                    <apex:facet name="header">氏名（漢字）</apex:facet> 
+                    <apex:outputField style="width:150px" value="{!o.ShimeiKanji__c}"/>
+                </td >
+                <td  style="width:160px">
+                    <apex:facet name="header">氏名（カタカナ）</apex:facet> 
+                    <apex:outputField style="width:150px" value="{!o.ShimeiKatakana__c}"/>
+                </td >
+                <td  style="width:160px">
+                    <apex:facet name="header">所属部門</apex:facet> 
+                    <apex:outputField style="width:150px" value="{!o.Department__c}"/>
+                </td >
+                <td  style="width:160px">
+                    <apex:facet name="header">入社年月日</apex:facet> 
+                    <apex:outputField style="width:150px" value="{!o.NyusyaDate__c}"/>
+                </td >
+                <td  style="width:160px">
+                    <apex:facet name="header">役職</apex:facet> 
+                    <apex:inputField style="width:150px" value="{!o.Position__c}"/>
+                </td >
+
+
+</tr>
+
+                </apex:repeat>
+</table>
+</div>
+</div>
+
+</apex:outputpanel>
+</div>
+
+</apex:form>
+</apex:page>

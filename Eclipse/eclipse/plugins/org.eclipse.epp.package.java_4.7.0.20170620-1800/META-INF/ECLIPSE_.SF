@@ -1,0 +1,56 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: 5/ePeBjeb+4/v54WmPAgRQu8Bdw2O
+ lyzML95zdp2gT0=
+SHA-256-Digest-Manifest: DLZCe4BJluPsZB1YxteLJjP0HLYSpOg7sTqP3l7+3dQ=
+Created-By: 1.8.0_121 (Oracle Corporation)
+
+Name: org.eclipse.ui.intro.universal.solstice/intro-eclipse.png
+SHA-256-Digest: uBEq5AcxHMOq77EovWd2BjX1SmH2zeBpOdS/FKD4Ssc=
+
+Name: about.properties
+SHA-256-Digest: jHPe8IJG4X79wBsMT3C3vXs7sLnR1woc/jtIgt0EOTU=
+
+Name: epp-java-about.png
+SHA-256-Digest: bbpnJAg9o6CPRHGqjfzStAYwbu6+NGuztca3zU7hjx0=
+
+Name: plugin_customization.ini
+SHA-256-Digest: PjnR5K7aNZizZAFUL/IBpd8Mo9pdkHqKumQPq5zILHs=
+
+Name: META-INF/maven/org.eclipse.epp/org.eclipse.epp.package.java/pom.
+ xml
+SHA-256-Digest: RFKRTFl8ZYKYUSRYVnsV9w60AkqaCA3JXgjwxAAwYxk=
+
+Name: about.html
+SHA-256-Digest: sNGy3Yk/kqofW0iouhMsDyBtHhc/mYnX8dGLsFG5mBs=
+
+Name: plugin.xml
+SHA-256-Digest: dLkuHgOW01rALgIiHs0wB6ERPdiHXuubuKQocLcIlFY=
+
+Name: intro-eclipse.png
+SHA-256-Digest: 7rNUwVker93T1W8eYg7x12PehHeRhsWBq5YgtkdjECE=
+
+Name: META-INF/maven/org.eclipse.epp/org.eclipse.epp.package.java/pom.
+ properties
+SHA-256-Digest: yQS1YEB8A2vL0eLtyZu92MY/8eCMZESij9tB01TR2o4=
+
+Name: eclipse32.png
+SHA-256-Digest: 4Vi6RhGrdWsIEJf2umgsolfDHPhCntdl7133+BjuodY=
+
+Name: about.mappings
+SHA-256-Digest: nN+eAVwuzHV+bigEDHubBLavYgV7AmE8cVss65hAn2o=
+
+Name: eclipse48.png
+SHA-256-Digest: kEswZnwk7p67eMXQdPGWgb+G5D1fq0WeVvIozlqdhPY=
+
+Name: about.ini
+SHA-256-Digest: Bx4TBVHrUSErz4Eop5NuzPW2OpkeU23E+xxATAQPnjY=
+
+Name: plugin.properties
+SHA-256-Digest: eTM4GiOgEWY+Z2tJ+vy7eZMnTTpsRcVNueN6B1LwY+w=
+
+Name: eclipse16.png
+SHA-256-Digest: AarETtJJL/I+MaW+NI7iR01+dhPsYH2fc4wOZIunUmw=
+
+Name: eclipse256.png
+SHA-256-Digest: ukiWOBEZ1tJILDZU6qXIUcPlD33ZNX4ZL8YL2LWhkqw=
+

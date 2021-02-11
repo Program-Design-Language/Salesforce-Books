@@ -1,0 +1,63 @@
+<apex:page controller="EmployeeListController" action="{!init}" sidebar="false" Id="EmployeeList" >
+<style type="text/css">
+    #conditionTable { width: 50%; border: 0; margin-left: 5%; }
+    #conditionTable .label { text-align: right; }
+    #conditionTable .dateFormat { display: none; }
+</style>
+<script type="text/javascript">
+    // ページを開いたときに初期フォーカスをしない
+    beenFocused = true;
+</script>
+<apex:form id="form1">
+    <apex:pageBlock title="社員一覧">
+        <apex:pageMessages id="messagearea" showDetail="false"/>
+        <apex:pageblockSection id="conditionSection" title="検索" columns="2">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="氏名（漢字）"/>
+                    <apex:inputText value="{!condition.shimeiKanji}"/> 
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="役職"/>
+                    <apex:inputField value="{!condition.obj.Position__c}"/> 
+                </apex:pageBlockSectionItem>
+        </apex:pageblockSection>
+        <apex:pageBlockButtons id="buttonSection" location="bottom" >
+            <apex:commandButton value="検索" action="{!search}" style="font-size:12pt;width:100px;height:30px;" reRender="searchresult,messagearea"/>
+            <apex:commandButton value="クリア" action="{!clear}" style="font-size:12pt;width:100px;height:30px;" reRender="conditionSection,searchresult,messagearea"/>
+        </apex:pageBlockButtons>
+    </apex:pageBlock>
+<apex:outputpanel id="searchresult">
+    <apex:pageBlock title="検索結果：" rendered="{!(results.size == 0)}">検索条件に該当するデータがありません</apex:pageBlock>
+        <apex:pageBlock id="resultBlock" title="社員一覧" rendered="{!(results.size > 0)}">
+            <apex:outputtext style="width:110px" value="結果 : {!results.size}件"/>
+            <apex:pageblockTable id="resultTable" value="{!results}" var="o" frame="box">
+                <apex:column style="width:80px">
+                    <apex:facet name="header">社員番号</apex:facet>
+                    <apex:outputlink value="/{!o.Id}"><apex:outputField style="width:80px" value="{!o.Name}"/></apex:outputlink>
+                </apex:column>
+                <apex:column style="width:160px">
+                    <apex:facet name="header">氏名（漢字）</apex:facet> 
+                    <apex:outputField style="width:150px" value="{!o.ShimeiKanji__c}"/>
+                </apex:column>
+                <apex:column style="width:160px">
+                    <apex:facet name="header">氏名（カタカナ）</apex:facet> 
+                    <apex:outputField style="width:150px" value="{!o.ShimeiKatakana__c}"/>
+                </apex:column>
+                <apex:column style="width:160px">
+                    <apex:facet name="header">所属部門</apex:facet> 
+                    <apex:outputField style="width:150px" value="{!o.Department__c}"/>
+                </apex:column>
+                <apex:column style="width:160px">
+                    <apex:facet name="header">入社年月日</apex:facet> 
+                    <apex:outputField style="width:150px" value="{!o.NyusyaDate__c}"/>
+                </apex:column>
+                <apex:column style="width:160px">
+                    <apex:facet name="header">役職</apex:facet> 
+                    <apex:inputField style="width:150px" value="{!o.Position__c}"/>
+                </apex:column>
+            </apex:pageblockTable>
+        </apex:pageBlock>
+</apex:outputpanel>
+
+</apex:form>
+</apex:page>
